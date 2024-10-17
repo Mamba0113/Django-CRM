@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from.models import Record
+from .models import Record
+from .forms import AddRecordForm
 
 def home(request):
     records = Record.objects.all()
@@ -29,3 +30,37 @@ def logout_user(request):
     logout(request)
     messages.success(request, "You Have Been Logged Out.")
     return redirect('home')
+
+
+def customer_record(request, pk):
+    if request.user.is_authenticated:
+        customer_record = Record.objects.get(id=pk)
+        return render(request, 'record.html', {'customer_record':customer_record})
+    else:
+        messages.success(request, "You Must Log In To View This Page.")
+        return redirect('home')
+    
+    
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        delete_it = Record.objects.get(id=pk)
+        delete_it.delete()
+        messages.success(request, "Record Deleted Successfully.")
+        return redirect('home')
+    else:
+        messages.success(request, "You Must Log In To Complete This Action.")
+        return redirect('home')
+
+
+def add_record(request):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "Record Added.")
+                return redirect('home')
+        return render(request, 'add_record.html', {'form':form})
+    else:
+        messages.success(request, "You Must Log In To Complete This Action.")
+        return redirect('home')
