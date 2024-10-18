@@ -3,20 +3,37 @@
 
 <h1>Customer Record</h1>
 <br/>
-<div class="card">
-    <h4 class="card-header">
-        {{ customer_record.first_name }} {{ customer_record.last_name }}    
-    </h4>
-    <div class="card-body">
-        <p class="card-text">
-            <strong>ID: </strong> {{ customer_record.id }} <br/>
-            <strong>Email: </strong> {{ customer_record.email }} <br/>
-            <strong>Phone Number: </strong>{{ customer_record.phone }} <br/>
-            <strong>Address: </strong>{{ customer_record.address }} <br/>
-            <strong>City: </strong>{{ customer_record.city }} <br/>
-            <strong>Postcode: </strong>{{ customer_record.postcode }} <br/>
-            <strong>Created at: </strong> {{ customer_record.created_at }} <br/>
-        </p>
+
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+            <h4 class="card-header">
+                {{ customer_record.first_name }} {{ customer_record.last_name }}    
+            </h4>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>ID: </strong> {{ customer_record.id }} <br/>
+                    <strong>Email: </strong> {{ customer_record.email }} <br/>
+                    <strong>Phone Number: </strong>{{ customer_record.phone }} <br/>
+                    <strong>Address: </strong>{{ customer_record.address }} <br/>
+                    <strong>City: </strong>{{ customer_record.city }} <br/>
+                    <strong>Postcode: </strong>{{ customer_record.postcode }} <br/>
+                    <strong>Created at: </strong> {{ customer_record.created_at }} <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <h4 class="card-header">
+                Comments    
+            </h4>
+            <div class="card-body">
+                <p class="card-text">
+                    {{ customer_record.comment }}
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <br/>

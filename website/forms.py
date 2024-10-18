@@ -12,6 +12,7 @@ class AddRecordForm(forms.ModelForm):
     address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Address", "class":"form-control"}), label="")
     city = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"City", "class":"form-control"}), label="")
     postcode = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Postcode", "class":"form-control"}), label="")
+    comment = forms.CharField(required=False, widget=forms.widgets.TextInput(attrs={"placeholder":"Comments...", "class":"form-control"}), label="")
     
     class Meta:
         model = Record
